@@ -1,0 +1,102 @@
+Checking dataset structure...
+Found 101 food classes
+Sample counts for first 5 classes:
+  apple_pie: 1000 images
+  baby_back_ribs: 1000 images
+  baklava: 1000 images
+  beef_carpaccio: 1000 images
+  beef_tartare: 1000 images
+Creating data generators...
+Found 80800 images belonging to 101 classes.
+Found 20200 images belonging to 101 classes.
+Training samples: 80800
+Validation samples: 20200
+Number of classes: 101
+Building model...
+2025-06-30 17:03:10.023634: I tensorflow/core/platform/cpu_feature_guard.cc:210] This TensorFlow binary is optimized to use available CPU instructions in performance-critical operations.
+To enable the following instructions: SSE3 SSE4.1 SSE4.2 AVX AVX2 AVX512F AVX512_VNNI AVX512_BF16 FMA, in other operations, rebuild TensorFlow with the appropriate compiler flags.
+Downloading data from https://storage.googleapis.com/tensorflow/keras-applications/mobilenet_v2/mobilenet_v2_weights_tf_dim_ordering_tf_kernels_1.0_224_no_top.h5
+9406464/9406464 ━━━━━━━━━━━━━━━━━━━━ 2s 0us/step 
+Model built successfully!
+
+Model Summary:
+Model: "sequential"
+┏━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━━━━━━━━━━━━━┳━━━━━━━━━━━━━━━━━┓
+┃ Layer (type)                         ┃ Output Shape                ┃         Param # ┃
+┡━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━━━━━━━━━━━━━╇━━━━━━━━━━━━━━━━━┩
+│ mobilenetv2_1.00_224 (Functional)    │ (None, 7, 7, 1280)          │       2,257,984 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ global_average_pooling2d             │ (None, 1280)                │               0 │
+│ (GlobalAveragePooling2D)             │                             │                 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout (Dropout)                    │ (None, 1280)                │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense (Dense)                        │ (None, 128)                 │         163,968 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dropout_1 (Dropout)                  │ (None, 128)                 │               0 │
+├──────────────────────────────────────┼─────────────────────────────┼─────────────────┤
+│ dense_1 (Dense)                      │ (None, 101)                 │          13,029 │
+└──────────────────────────────────────┴─────────────────────────────┴─────────────────┘
+ Total params: 2,434,981 (9.29 MB)
+ Trainable params: 176,997 (691.39 KB)
+ Non-trainable params: 2,257,984 (8.61 MB)
+
+Starting training...
+Starting training...
+Steps per epoch: 5050
+Validation steps: 1262
+Epoch 1/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 245ms/step - accuracy: 0.2464 - loss: 3.2175       
+Epoch 1: val_accuracy improved from -inf to 0.46682, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 1454s 287ms/step - accuracy: 0.2464 - loss: 3.2174 - val_accuracy: 0.4668 - val_loss: 2.1327 - learning_rate: 0.0010
+Epoch 2/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 164ms/step - accuracy: 0.3894 - loss: 2.4437   
+Epoch 2: val_accuracy improved from 0.46682 to 0.47831, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 942s 186ms/step - accuracy: 0.3894 - loss: 2.4437 - val_accuracy: 0.4783 - val_loss: 2.0573 - learning_rate: 0.0010
+Epoch 3/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 151ms/step - accuracy: 0.4098 - loss: 2.3667   
+Epoch 3: val_accuracy improved from 0.47831 to 0.48242, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 880s 174ms/step - accuracy: 0.4098 - loss: 2.3667 - val_accuracy: 0.4824 - val_loss: 2.0406 - learning_rate: 0.0010
+Epoch 4/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 151ms/step - accuracy: 0.4156 - loss: 2.3415   
+Epoch 4: val_accuracy improved from 0.48242 to 0.48509, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 883s 175ms/step - accuracy: 0.4156 - loss: 2.3415 - val_accuracy: 0.4851 - val_loss: 2.0219 - learning_rate: 0.0010
+Epoch 5/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 152ms/step - accuracy: 0.4176 - loss: 2.3308   
+Epoch 5: val_accuracy did not improve from 0.48509
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 885s 175ms/step - accuracy: 0.4176 - loss: 2.3308 - val_accuracy: 0.4812 - val_loss: 2.0611 - learning_rate: 0.0010
+Epoch 6/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 153ms/step - accuracy: 0.4216 - loss: 2.3195   
+Epoch 6: val_accuracy improved from 0.48509 to 0.49361, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 891s 176ms/step - accuracy: 0.4216 - loss: 2.3195 - val_accuracy: 0.4936 - val_loss: 2.0099 - learning_rate: 0.0010
+Epoch 7/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 153ms/step - accuracy: 0.4219 - loss: 2.3156   
+Epoch 7: val_accuracy did not improve from 0.49361
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 894s 177ms/step - accuracy: 0.4219 - loss: 2.3156 - val_accuracy: 0.4871 - val_loss: 2.0369 - learning_rate: 0.0010
+Epoch 8/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 153ms/step - accuracy: 0.4277 - loss: 2.2808   
+Epoch 8: val_accuracy improved from 0.49361 to 0.49465, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+
+Epoch 8: ReduceLROnPlateau reducing learning rate to 0.00020000000949949026.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 894s 177ms/step - accuracy: 0.4277 - loss: 2.2808 - val_accuracy: 0.4947 - val_loss: 2.0105 - learning_rate: 0.0010
+Epoch 9/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 194ms/step - accuracy: 0.4515 - loss: 2.1711
+Epoch 9: val_accuracy improved from 0.49465 to 0.52144, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 1195s 237ms/step - accuracy: 0.4515 - loss: 2.1711 - val_accuracy: 0.5214 - val_loss: 1.9060 - learning_rate: 2.0000e-04
+Epoch 10/10
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 0s 224ms/step - accuracy: 0.4621 - loss: 2.1145
+Epoch 10: val_accuracy improved from 0.52144 to 0.52466, saving model to best_food_model.h5
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`. 
+5050/5050 ━━━━━━━━━━━━━━━━━━━━ 1336s 265ms/step - accuracy: 0.4621 - loss: 2.1145 - val_accuracy: 0.5247 - val_loss: 1.8906 - learning_rate: 2.0000e-04
+Restoring model weights from the end of the best epoch: 10.
+WARNING:absl:You are saving your model as an HDF5 file via `model.save()` or `keras.saving.save_model(model)`. This file format is considered legacy. We recommend using instead the native Keras format, e.g. `model.save('my_model.keras')` or `keras.saving.save_model(model, 'my_model.keras')`.
+Model saved to food_recognition_model.h5
+Class names saved to class_names.json
+Training completed
